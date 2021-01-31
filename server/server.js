@@ -12,13 +12,15 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json());
 
+//configuración global de Controlladores
+app.use(require('./controllers/index'));
 
 
-app.use(require('./controllers/usuarioController').app);
 mongoose.connect(process.env.URLDB, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true }, (err, res) => {
     if (err) throw err;
     console.log("Base de datos ONLINE");
 });
+
 
 
 app.listen(process.env.PORT, () => {
